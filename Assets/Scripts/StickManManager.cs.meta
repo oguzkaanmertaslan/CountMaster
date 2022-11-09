@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: 609a3ed91e7958346a4a6a3c4c0c2b65
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - redBlood: {fileID: 1174330761261860627, guid: ebfeca680b0e65d46b85d7525da0e2e6, type: 3}
+  - blueBlood: {fileID: 7556546246779399852, guid: 7861f71e2da831f4e96495c4344acbc0, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
