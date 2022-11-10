@@ -17,21 +17,18 @@ public class PlayerControl : MonoBehaviour
     public static PlayerControl PlayerControlInstance;
     public GameObject SecondCamera;
     public GameObject MainCamera;
-
-
-
+    public bool moveTheCamera;
 
     void Start()
     {
         player = transform;
-
-        
     }
     private void Update()
     {
         numberOfStickmans = transform.childCount - 1;
         CounterTxt.text = numberOfStickmans.ToString();
         PlayerControlInstance = this;
+       
     }
    
     public void FormatStickMan()

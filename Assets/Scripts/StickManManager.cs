@@ -5,26 +5,11 @@ using System.Collections.Generic;
 
 public class StickManManager : MonoBehaviour
 {
-    public GameObject blueBlood;
+    [SerializeField] Tower towerList;
+    [SerializeField] PlayerControl pc;
     public GameObject redBlood;
-    RaycastHit hit;
-
-    private void Update()
-    {
-       ParticleEffect();
-    }
-    private void ParticleEffect()
-    {
-        if (Physics.Raycast(transform.position, Vector3.forward, out hit, 1f))
-        {
-            if (hit.transform.name=="Cylinder")
-            {
-               Destroy(hit.transform.gameObject);
-
-            }
-        }
-    }
-
+    public GameObject blood;
+    private Animator StickManAnimator;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -35,10 +20,9 @@ public class StickManManager : MonoBehaviour
         }
         if (other.CompareTag("destroy"))
         {
-
-            //Instantiate(blueBlood, transform.position, Quaternion.identity);
+           Instantiate(blood, transform.position, Quaternion.identity);
             Destroy(gameObject);
-            //StartCoroutine(Timer());
+            StartCoroutine(Timer());
 
         }
         switch (other.tag)
@@ -54,10 +38,27 @@ public class StickManManager : MonoBehaviour
                 transform.DOJump(new Vector3(1f,0f, 70.637f), 1f, 1, 1f).SetEase(Ease.Flash);
                 break;
         }
+        if (other.CompareTag("stair"))
+        {
+            transform.parent.parent = null; 
+            transform.parent = null; 
+            GetComponent<Rigidbody>().isKinematic = GetComponent<Collider>().isTrigger = false;
+            StickManAnimator.SetBool("run", false);
+
+            if (!PlayerControl.PlayerControlInstance.moveTheCamera)
+                PlayerControl.PlayerControlInstance.moveTheCamera = true;
+
+            if (PlayerControl.PlayerControlInstance.player.transform.childCount == 2)
+            {
+                other.GetComponent<Renderer>().material.DOColor(new Color(0.4f, 0.98f, 0.65f), 0.5f).SetLoops(1000, LoopType.Yoyo)
+                    .SetEase(Ease.Flash);
+            }
+
+        }
     }
-   // IEnumerator Timer()
-    //{
-       // PlayerControl.PlayerControlInstance.FormatStickMan();
-        //yield return new WaitForSecondsRealtime(3f);
-    //}
+    IEnumerator Timer()
+    {
+        PlayerControl.PlayerControlInstance.FormatStickMan();
+       yield return new WaitForSecondsRealtime(3f);
+    }
 }

@@ -2,8 +2,6 @@ using UnityEngine;
 using TMPro;
 using DG.Tweening;
 
-
-
 public class EnemyControl : MonoBehaviour
 {
     private int numberOfStickmans;
@@ -54,12 +52,9 @@ public class EnemyControl : MonoBehaviour
 
                     }
                 }
-                
-                
             }
         }
     }
-
 
     public void AttackEnemy(Transform enemyForce)
     {
