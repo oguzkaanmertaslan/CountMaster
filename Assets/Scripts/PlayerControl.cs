@@ -8,6 +8,7 @@ using DG.Tweening;
 public class PlayerControl : MonoBehaviour
 {
     public Transform player;
+    public Transform counter;
     [SerializeField] public int numberOfStickmans;
     [Range(0f, 1f)] [SerializeField] private float Distance, Radius;
     [SerializeField] public TextMeshPro CounterTxt;
@@ -38,6 +39,8 @@ public class PlayerControl : MonoBehaviour
             var x = Distance * Mathf.Sqrt(i) * Mathf.Cos(i * Radius);
             var z = Distance * Mathf.Sqrt(i) * Mathf.Sin(i * Radius);
             var newPos = new Vector3(x, -0.5311052f, z);
+            //var counterPos = new Vector3(0, 1f, 0);
+            //counter.transform.DOLocalMove(counterPos, 1f);
             player.transform.GetChild(i).DOLocalMove(newPos, 1f).SetEase(Ease.OutBack);
         }
     }

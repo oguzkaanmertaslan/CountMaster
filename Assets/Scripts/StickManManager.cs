@@ -13,14 +13,9 @@ public class StickManManager : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("red") && other.transform.parent.childCount>0)
-        {
-            Destroy(other.gameObject);
-            Destroy(gameObject);
-        }
         if (other.CompareTag("destroy"))
         {
-           Instantiate(blood, transform.position, Quaternion.identity);
+           //Instantiate(blood, transform.position, Quaternion.identity);
             Destroy(gameObject);
             StartCoroutine(Timer());
 
