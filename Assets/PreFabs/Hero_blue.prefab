@@ -1168,7 +1168,7 @@ GameObject:
   - component: {fileID: 5002825017859040922}
   - component: {fileID: -4746957642972085150}
   - component: {fileID: 5002825017859040868}
-  - component: {fileID: 608030741821302881}
+  - component: {fileID: 1099270070083698494}
   m_Layer: 0
   m_Name: Hero_blue
   m_TagString: blue
@@ -1221,7 +1221,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 1
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!95 &5002825017859040868
 Animator:
@@ -1243,7 +1243,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &608030741821302881
+--- !u!114 &1099270070083698494
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1255,7 +1255,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 609a3ed91e7958346a4a6a3c4c0c2b65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerControl: {fileID: 0}
+  redBlood: {fileID: 4312845891719167061, guid: ebfeca680b0e65d46b85d7525da0e2e6, type: 3}
+  blood: {fileID: 8342977292455022447, guid: fb07176dac8231e4b8ac16de16b1d051, type: 3}
+  player: {fileID: 5783038166432988226, guid: 6e8c1c3fdf5700441a860d10c1f7ff75, type: 3}
+  mainCamera: {fileID: 3497578182039066445, guid: ab1bf3c2c88d2484782c13ea7ff86879, type: 3}
+  Distance: 0.4
+  Radius: 0.75
 --- !u!1 &5361704973628837582
 GameObject:
   m_ObjectHideFlags: 0

@@ -11,15 +11,15 @@ public class PlayerMovementControl : MonoBehaviour
     [SerializeField] private float forwardMovementSpeed;
     [SerializeField] private float horizontalMovementSpeed;
     [SerializeField] private float horizontalLimitValue;
-
     private float newPositionX;
+
     void Update()
     {
         if (playerControl.attack)
         {
             var direction = new Vector3(playerControl.enemy.position.x, transform.position.y, playerControl.enemy.position.z) - transform.position;
 
-            for (int i = 0; i < transform.childCount; i++)
+            for (int i = 1; i < transform.childCount; i++)
             {
                 transform.GetChild(i).rotation = Quaternion.Slerp(transform.GetChild(i).rotation, Quaternion.LookRotation(direction, Vector3.up), Time.deltaTime * 3f);
             }
@@ -33,7 +33,7 @@ public class PlayerMovementControl : MonoBehaviour
                     {
                         transform.GetChild(i).position = Vector3.Lerp(transform.GetChild(i).position,
                             new Vector3(playerControl.enemy.GetChild(1).GetChild(0).position.x, transform.GetChild(i).position.y
-                            , playerControl.enemy.GetChild(1).GetChild(0).position.z), Time.deltaTime * 3f);
+                            , playerControl.enemy.GetChild(1).GetChild(0).position.z), Time.deltaTime * 1f);
                     }
                 }
             }
@@ -44,7 +44,7 @@ public class PlayerMovementControl : MonoBehaviour
 
                 for (int i = 1; i < transform.childCount; i++)
                 {
-                    transform.GetChild(i).rotation = Quaternion.Slerp(transform.GetChild(i).rotation, Quaternion.identity, Time.deltaTime * 2f);
+                    transform.GetChild(i).rotation = Quaternion.identity;
                 }
                 playerControl.enemy.gameObject.SetActive(false);
             }

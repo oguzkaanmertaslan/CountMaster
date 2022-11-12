@@ -19,14 +19,14 @@ public class PlayerControl : MonoBehaviour
     public GameObject SecondCamera;
     public GameObject MainCamera;
     public bool moveTheCamera;
-
-    void Start()
+    public Animator StickManAnimator;
+    private void Start()
     {
         player = transform;
     }
     private void Update()
     {
-        numberOfStickmans = transform.childCount - 1;
+        numberOfStickmans = transform.childCount - 2;
         CounterTxt.text = numberOfStickmans.ToString();
         PlayerControlInstance = this;
        
@@ -34,14 +34,15 @@ public class PlayerControl : MonoBehaviour
    
     public void FormatStickMan()
     {
-        for (int i = 0; i < player.childCount; i++)
+        player.transform.GetChild(0).localRotation = Quaternion.Euler(-74.02f, 0f, 0f);
+
+        for (int i = 1; i < player.childCount; i++)
         {
             var x = Distance * Mathf.Sqrt(i) * Mathf.Cos(i * Radius);
             var z = Distance * Mathf.Sqrt(i) * Mathf.Sin(i * Radius);
             var newPos = new Vector3(x, -0.5311052f, z);
-            //var counterPos = new Vector3(0, 1f, 0);
-            //counter.transform.DOLocalMove(counterPos, 1f);
             player.transform.GetChild(i).DOLocalMove(newPos, 1f).SetEase(Ease.OutBack);
+            player.transform.GetChild(0).localPosition = new Vector3(0f, 0.91f, 0.3315395f);
         }
     }
 
@@ -52,12 +53,12 @@ public class PlayerControl : MonoBehaviour
             Instantiate(stickMan, transform.position, Quaternion.identity, transform);
         }
         numberOfStickmans = transform.childCount -1;
-
         CounterTxt.text = numberOfStickmans.ToString();
         FormatStickMan();
     }
     private void OnTriggerEnter(Collider other)
     {
+
         if (other.gameObject.tag=="gate")
         {
             other.transform.parent.GetChild(0).GetComponent<BoxCollider>().enabled = false;

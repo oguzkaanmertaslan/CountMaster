@@ -2,22 +2,21 @@ using UnityEngine;
 using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 
 public class StickManManager : MonoBehaviour
 {
-    [SerializeField] Tower towerList;
-    [SerializeField] PlayerControl pc;
     public GameObject redBlood;
     public GameObject blood;
-    private Animator StickManAnimator;
-
+    public GameObject player;
+    public Camera mainCamera;
+    [Range(0f, 1f)] [SerializeField] private float Distance, Radius;
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("destroy"))
         {
-           //Instantiate(blood, transform.position, Quaternion.identity);
+           Instantiate(blood, transform.position, Quaternion.identity);
             Destroy(gameObject);
-            StartCoroutine(Timer());
 
         }
         switch (other.tag)
@@ -27,33 +26,32 @@ public class StickManManager : MonoBehaviour
                 {
                     Destroy(other.gameObject);
                     Destroy(gameObject);
+                    Instantiate(blood, transform.position, Quaternion.identity);
+                    Instantiate(redBlood, transform.position, Quaternion.identity);
                 }
                 break;
             case "jump":
-                transform.DOJump(new Vector3(1f,0f, 70.637f), 1f, 1, 1f).SetEase(Ease.Flash);
+                var newPosition = new Vector3(transform.position.x, transform.position.y, transform.position.z + 4f);
+                transform.DOJump(newPosition, 1f, 1, 1f).SetEase(Ease.Flash).OnComplete(PlayerControl.PlayerControlInstance.FormatStickMan);
                 break;
         }
         if (other.CompareTag("stair"))
         {
-            transform.parent.parent = null; 
+            transform.parent.parent = null;
             transform.parent = null; 
             GetComponent<Rigidbody>().isKinematic = GetComponent<Collider>().isTrigger = false;
-            StickManAnimator.SetBool("run", false);
-
+            var newPosition = new Vector3(0f, player.transform.GetChild(1).position.y, player.transform.GetChild(1).position.z);
+            transform.DOLocalMove(newPosition, 2f).SetEase(Ease.Flash);
             if (!PlayerControl.PlayerControlInstance.moveTheCamera)
                 PlayerControl.PlayerControlInstance.moveTheCamera = true;
 
             if (PlayerControl.PlayerControlInstance.player.transform.childCount == 2)
             {
+                mainCamera.GetComponent<CinemachineBrain>().enabled = false;
                 other.GetComponent<Renderer>().material.DOColor(new Color(0.4f, 0.98f, 0.65f), 0.5f).SetLoops(1000, LoopType.Yoyo)
                     .SetEase(Ease.Flash);
             }
-
         }
     }
-    IEnumerator Timer()
-    {
-        PlayerControl.PlayerControlInstance.FormatStickMan();
-       yield return new WaitForSecondsRealtime(3f);
-    }
-}
+  }
+
