@@ -19,6 +19,7 @@ public class StickManManager : MonoBehaviour
             Destroy(gameObject);
 
         }
+       
         switch (other.tag)
         {
             case "red":
@@ -38,20 +39,25 @@ public class StickManManager : MonoBehaviour
         if (other.CompareTag("stair"))
         {
             transform.parent.parent = null;
-            transform.parent = null; 
+            transform.parent = null;
+            transform.GetComponent<Animator>().SetBool("run", false);
             GetComponent<Rigidbody>().isKinematic = GetComponent<Collider>().isTrigger = false;
             var newPosition = new Vector3(0f, player.transform.GetChild(1).position.y, player.transform.GetChild(1).position.z);
             transform.DOLocalMove(newPosition, 2f).SetEase(Ease.Flash);
+
             if (!PlayerControl.PlayerControlInstance.moveTheCamera)
                 PlayerControl.PlayerControlInstance.moveTheCamera = true;
 
             if (PlayerControl.PlayerControlInstance.player.transform.childCount == 2)
             {
+                PlayerControl.PlayerControlInstance.player.transform.GetComponent<Animator>().SetBool("run", false);
                 mainCamera.GetComponent<CinemachineBrain>().enabled = false;
                 other.GetComponent<Renderer>().material.DOColor(new Color(0.4f, 0.98f, 0.65f), 0.5f).SetLoops(1000, LoopType.Yoyo)
                     .SetEase(Ease.Flash);
             }
         }
     }
-  }
+ }
+     
+  
 

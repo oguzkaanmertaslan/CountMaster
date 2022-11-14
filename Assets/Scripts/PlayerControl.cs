@@ -26,7 +26,7 @@ public class PlayerControl : MonoBehaviour
     }
     private void Update()
     {
-        numberOfStickmans = transform.childCount - 2;
+        numberOfStickmans = transform.childCount - 1;
         CounterTxt.text = numberOfStickmans.ToString();
         PlayerControlInstance = this;
        
@@ -67,7 +67,6 @@ public class PlayerControl : MonoBehaviour
             if (gateControl.multiply)
             {
               MakeStickMan(numberOfStickmans * gateControl.gateCount);
-              
             }
             else
             {

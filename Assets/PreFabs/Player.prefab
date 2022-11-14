@@ -512,10 +512,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 609a3ed91e7958346a4a6a3c4c0c2b65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  towerList: {fileID: 0}
   redBlood: {fileID: 4312845891719167061, guid: ebfeca680b0e65d46b85d7525da0e2e6, type: 3}
   blood: {fileID: 4405096427529798626, guid: 7861f71e2da831f4e96495c4344acbc0, type: 3}
   player: {fileID: 4095696138648848076}
+  mainCamera: {fileID: 0}
   Distance: 0.4
   Radius: 0.75
 --- !u!4 &4565643476939023842 stripped

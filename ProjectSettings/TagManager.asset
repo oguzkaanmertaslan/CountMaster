@@ -11,6 +11,7 @@ TagManager:
   - jump
   - destroy
   - stair
+  - camera
   layers:
   - Default
   - TransparentFX

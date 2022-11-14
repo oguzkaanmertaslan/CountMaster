@@ -1255,10 +1255,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 609a3ed91e7958346a4a6a3c4c0c2b65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  redBlood: {fileID: 4312845891719167061, guid: ebfeca680b0e65d46b85d7525da0e2e6, type: 3}
-  blood: {fileID: 8342977292455022447, guid: fb07176dac8231e4b8ac16de16b1d051, type: 3}
+  redBlood: {fileID: 4151227562095304521, guid: 12a5476cc24e91442b85de6718e51007, type: 3}
+  blood: {fileID: 4991061210073814098, guid: 9d9bcd08d13e9504a8f076736c1381ed, type: 3}
   player: {fileID: 5783038166432988226, guid: 6e8c1c3fdf5700441a860d10c1f7ff75, type: 3}
-  mainCamera: {fileID: 3497578182039066445, guid: ab1bf3c2c88d2484782c13ea7ff86879, type: 3}
+  mainCamera: {fileID: 3497578182039066447, guid: ab1bf3c2c88d2484782c13ea7ff86879, type: 3}
   Distance: 0.4
   Radius: 0.75
 --- !u!1 &5361704973628837582

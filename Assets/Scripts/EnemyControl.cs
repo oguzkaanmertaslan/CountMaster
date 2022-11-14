@@ -19,7 +19,7 @@ public class EnemyControl : MonoBehaviour
             Instantiate(stickMan, transform.position, new Quaternion(0f, 180f, 0f, 1f), transform);
         }
 
-        CounterTxt.text = (transform.childCount-1 ).ToString();
+        CounterTxt.text = transform.childCount .ToString();
         FormatStickMan();
     }
 

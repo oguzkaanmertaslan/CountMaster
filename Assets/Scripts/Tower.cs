@@ -3,16 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
-
 public class Tower : MonoBehaviour
 {
-
     private int playerAmount;
     [Range(5f, 10f)] [SerializeField] private int maxPlayerPerRow;
     [Range(0f, 2f)] [SerializeField] private float xGap;
     [Range(0f, 2f)] [SerializeField] private float yGap;
     [Range(0f, 10f)] [SerializeField] private float yOffset;
-
     [SerializeField] private List<int> towerCountList = new List<int>();
     [SerializeField] public List<GameObject> towerList = new List<GameObject>();
     public static Tower TowerInstance;
@@ -53,13 +50,11 @@ public class Tower : MonoBehaviour
                 i++;
             }
         }
-
     }
     IEnumerator BuildTowerCoroutine()
     {
         var towerId = 0;
         transform.DOMoveX(0f, 0.5f).SetEase(Ease.Flash);
-
         yield return new WaitForSecondsRealtime(0.55f);
 
         foreach (int towerHumanCount in towerCountList)
@@ -68,7 +63,6 @@ public class Tower : MonoBehaviour
             {
                 child.transform.DOLocalMove(child.transform.localPosition + new Vector3(0, yGap, 0), 0.2f).SetEase(Ease.OutQuad);
             }
-
             var tower = new GameObject("Tower" + towerId);
 
             tower.transform.parent = transform;
@@ -78,7 +72,6 @@ public class Tower : MonoBehaviour
 
             var towerNewPos = Vector3.zero;
             float tempTowerHumanCount = 0;
-
             for (int i = 1; i < transform.childCount; i++)
             {
                 Transform child = transform.GetChild(i);
@@ -93,9 +86,7 @@ public class Tower : MonoBehaviour
                     break;
                 }
             }
-
             tower.transform.position = new Vector3(-towerNewPos.x / towerHumanCount, tower.transform.position.y - yOffset, tower.transform.position.z);
-
             towerId++;
             yield return new WaitForSecondsRealtime(0.2f);
         }
