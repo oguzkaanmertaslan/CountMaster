@@ -1257,8 +1257,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   redBlood: {fileID: 4151227562095304521, guid: 12a5476cc24e91442b85de6718e51007, type: 3}
   blood: {fileID: 4991061210073814098, guid: 9d9bcd08d13e9504a8f076736c1381ed, type: 3}
-  player: {fileID: 5783038166432988226, guid: 6e8c1c3fdf5700441a860d10c1f7ff75, type: 3}
-  mainCamera: {fileID: 3497578182039066447, guid: ab1bf3c2c88d2484782c13ea7ff86879, type: 3}
+  mainCamera: {fileID: 4778706795461685855, guid: 2d031f0c079517f4280309386bbb683e, type: 3}
+  player: {fileID: 5092769736332119041, guid: 7df692d125b42d2439478879b87debdc, type: 3}
+  pmc: {fileID: 5092769736332119047, guid: 7df692d125b42d2439478879b87debdc, type: 3}
   Distance: 0.4
   Radius: 0.75
 --- !u!1 &5361704973628837582

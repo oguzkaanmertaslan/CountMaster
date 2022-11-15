@@ -10,6 +10,7 @@ public class Tower : MonoBehaviour
     [Range(0f, 2f)] [SerializeField] private float xGap;
     [Range(0f, 2f)] [SerializeField] private float yGap;
     [Range(0f, 10f)] [SerializeField] private float yOffset;
+
     [SerializeField] private List<int> towerCountList = new List<int>();
     [SerializeField] public List<GameObject> towerList = new List<GameObject>();
     public static Tower TowerInstance;
@@ -18,11 +19,11 @@ public class Tower : MonoBehaviour
     {
         TowerInstance = this;
     }
-    public void DecreaseBlock(GameObject _gameObject)
+    /*public void DecreaseBlock(GameObject _gameObject)
     {
         _gameObject.transform.parent = null;
         towerList.Remove(_gameObject);
-    }
+    }*/
     public void CreateTower(int stickManNo)
     {
         playerAmount = stickManNo;
@@ -74,19 +75,20 @@ public class Tower : MonoBehaviour
             float tempTowerHumanCount = 0;
             for (int i = 1; i < transform.childCount; i++)
             {
-                Transform child = transform.GetChild(i);
-                child.transform.parent = tower.transform;
-                child.transform.localPosition = new Vector3(tempTowerHumanCount * xGap, 0, 0);
-                towerNewPos += child.transform.position;
-                tempTowerHumanCount++;
-                i--;
-
-                if (tempTowerHumanCount >= towerHumanCount)
-                {
-                    break;
-                }
+                  Transform child = transform.GetChild(i);
+                    child.transform.parent = tower.transform;
+                    child.transform.localPosition = new Vector3(tempTowerHumanCount * xGap, 0, 0);
+                    towerNewPos += child.transform.position;
+                    tempTowerHumanCount++;
+                    i--;
+                    
+                    if (tempTowerHumanCount >= towerHumanCount)
+                    {
+                        break;
+                    }
             }
             tower.transform.position = new Vector3(-towerNewPos.x / towerHumanCount, tower.transform.position.y - yOffset, tower.transform.position.z);
+
             towerId++;
             yield return new WaitForSecondsRealtime(0.2f);
         }

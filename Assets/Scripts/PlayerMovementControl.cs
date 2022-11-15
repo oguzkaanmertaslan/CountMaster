@@ -8,7 +8,7 @@ public class PlayerMovementControl : MonoBehaviour
 {
     [SerializeField] private PlayerInputControl playerInputController;
     [SerializeField] private PlayerControl playerControl;
-    [SerializeField] private float forwardMovementSpeed;
+    [SerializeField] public float forwardMovementSpeed;
     [SerializeField] private float horizontalMovementSpeed;
     [SerializeField] private float horizontalLimitValue;
     private float newPositionX;
